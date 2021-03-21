@@ -15,6 +15,9 @@ function Home() {
     if(data) {
       setCharacters(data.characters.results);
     }
+    let url = "https://www.youtube.com/watch?v=M40SBBsSCIA";
+    let audio = new Audio(url);
+    audio.play();
   }, [data])
 
   const nextPage = () => {
