@@ -1,29 +1,26 @@
 @import "../../styles/colors";
 
 .home-wrapper {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  color: white;
+  height: 100%;
+  text-align: center;
 
-  .portal-image {
-    height: 250px;
-    width: 250px;
-    animation: portal-spin infinite 20s linear;
-    margin-bottom: 50px;
+  .characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    .character-display {
+      margin: 20px;
+
+      div {
+        margin-top: 10px;
+      }
+    }
   }
 
-  .created-by {
-    position: absolute;
-    bottom: 0;
-    color: #ffffff;
-    font-style: italic;
-    font-size: 0.5em;
+  .char-image {
+    height: 150px;
+    width: 150px;
   }
-}
-
-@keyframes portal-spin {
-  0%   {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
 }

@@ -1,0 +1,30 @@
+@import "../../styles/colors";
+
+.welcome-wrapper {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .portal-image {
+    height: 250px;
+    width: 250px;
+    animation: portal-spin infinite 20s linear;
+    margin-bottom: 50px;
+  }
+
+  .created-by {
+    position: absolute;
+    bottom: 0;
+    color: #ffffff;
+    font-style: italic;
+    font-size: 0.5em;
+  }
+}
+
+@keyframes portal-spin {
+  0%   {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}

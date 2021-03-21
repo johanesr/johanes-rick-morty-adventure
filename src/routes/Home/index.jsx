@@ -1,25 +1,64 @@
-import { useQuery } from '@apollo/client';
-import { GET_ALL_RICKS } from '../../graphql/index';
-
+import { useState, useEffect } from 'react';
 import './styles.scss';
-import Portal from '../../styles/images/portal.png';
-
+import { useQuery } from '@apollo/client';
+import { GET_ALL } from '../../graphql';
 
 function Home() {
-  const { loading, error, data, refetch } = useQuery(GET_ALL_RICKS);
-  console.log(data);
-  console.log(error);
-  console.log(loading);
+  const [gqlVariable, setGqlVariable] = useState({page:1})
+  const [characters, setCharacters] = useState([])
+  const { loading, error, data, refetch } = useQuery(GET_ALL, {
+    variables: gqlVariable
+  });
+
+  useEffect(() => {
+    refetch();
+    if(data) {
+      setCharacters(data.characters.results);
+    }
+  }, [data])
+
+  const nextPage = () => {
+    console.log("Next");
+    setGqlVariable({
+      page: gqlVariable.page + 1
+    })
+    console.log(characters);
+  }
+
+  const prevPage = () => {
+    console.log("Prev");
+    if(gqlVariable.page!==0) {
+      setGqlVariable({
+        page: gqlVariable.page - 1
+      })
+    }
+    console.log(characters);
+  }
+
+  function test(params) {
+    console.log(params);
+  }
 
   return(
     <div className="home-wrapper">
-      <img src={Portal} className="portal-image" alt="Portals"/>
-      <div className="rick-mort-font">
-        We are in a website Morty!
-      </div>
-      <div className="created-by">
-        Created by: Johanes Ronaldo
-      </div>
+      {loading===true ? <div>Loading...</div> :
+        <>
+        <div>Home</div>
+        <div className="characters">
+        {
+          characters.map((char, i) => (
+            <div key={i} className="character-display">
+              <img src={char.image} className="char-image" alt={char.name}/>
+              <div>{char.name}</div>
+            </div>
+          ))
+        }
+        </div>
+        <button onClick={nextPage}>Next Page!</button>
+        <button onClick={prevPage}>Prev Me!</button>
+        <button onClick={() => test("TEST")}>TEST</button>
+        </>
+      }
     </div>
   );
 }
