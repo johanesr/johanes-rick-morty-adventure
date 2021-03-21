@@ -14,18 +14,3 @@ export const GET_ALL = gql`
       }
     }
   }`
-
-export const GET_ALL_RICKS = gql`
-  query {
-    characters(filter: { name: "rick" }) {
-      info {
-        count
-      }
-      results {
-        id
-        name
-        status
-        image
-      }
-    }
-  }`
