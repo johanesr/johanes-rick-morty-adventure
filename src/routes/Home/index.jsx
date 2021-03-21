@@ -1,23 +1,30 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import './styles.scss';
 import { useQuery } from '@apollo/client';
 import { GET_ALL } from '../../graphql';
 
 function Home() {
-  const [gqlVariable, setGqlVariable] = useState({page:1})
-  const [characters, setCharacters] = useState([])
-  const { loading, error, data, refetch } = useQuery(GET_ALL, {
+  const [gqlVariable, setGqlVariable] = useState({page:1});
+  const [characters, setCharacters] = useState([]);
+  // const [curPage, setCurPage] = useState(1);
+  const { loading, data, refetch } = useQuery(GET_ALL, {
     variables: gqlVariable
   });
 
   useEffect(() => {
-    refetch();
-    if(data) {
-      setCharacters(data.characters.results);
-    }
-    let url = "https://www.youtube.com/watch?v=M40SBBsSCIA";
-    let audio = new Audio(url);
-    audio.play();
+    refetch()
+      .then(res => {
+        if(res.data) {
+          setCharacters(data.characters.results);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
 
   const nextPage = () => {
@@ -46,7 +53,7 @@ function Home() {
     <div className="home-wrapper">
       {loading===true ? <div>Loading...</div> :
         <>
-        <div>Home</div>
+        <Link to="/"><div>Home</div></Link>
         <div className="characters">
         {
           characters.map((char, i) => (
