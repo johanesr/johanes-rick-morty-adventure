@@ -8,7 +8,7 @@ function Welcome() {
       <Link to="/home">
         <img src={Portal} className="portal-image" alt="Portals"/>
       </Link>
-      <div className="rick-mort-font">
+      <div className="rick-morty-font">
         We are in a website Morty!
       </div>
       <div className="created-by">

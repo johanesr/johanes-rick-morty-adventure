@@ -1,0 +1,26 @@
+@import "../../styles/colors";
+
+.char-list-wrapper {
+  position: relative;
+  color: white;
+  height: 100%;
+  text-align: center;
+
+  .characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    .character-display {
+      margin: 20px;
+
+      div {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .char-image {
+    height: 150px;
+    width: 150px;
+  }
+}

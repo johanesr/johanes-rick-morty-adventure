@@ -1,11 +1,12 @@
 import React, { useState, Suspense } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import './App.scss';
 
 import ThemeSong from './theme.mp3';
 
 const Welcome = React.lazy(() => import('./routes/Welcome'));
 const Home = React.lazy(() => import('./routes/Home'));
+const CharList = React.lazy(() => import('./routes/CharList'))
 
 let audio = new Audio(ThemeSong);
 audio.loop = true;
@@ -40,6 +41,9 @@ function App() {
             </Route>
             <Route path="/home">
               <Home />
+            </Route>
+            <Route path="/list">
+              <CharList />
             </Route>
           </Switch>
         </div>

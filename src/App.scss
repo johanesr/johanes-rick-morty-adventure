@@ -6,7 +6,7 @@
 }
 
 .app-wrapper {
-  background-color: #000000;
+  background-color: $color-light-black;
 
   .audio-player {
     color: #ffffff;
@@ -28,7 +28,7 @@
     }
   }
 
-  .rick-mort-font {
+  .rick-morty-font {
     font-family: Schwifty;
     font-size: 42px;
     @media (max-width: 990px) {
